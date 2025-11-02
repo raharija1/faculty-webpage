@@ -1,27 +1,83 @@
 body {
   font-family: Arial, sans-serif;
-  line-height: 1.6;
-  margin: 20px;
+  line-height: 1.3;           /* tighter line spacing (was 1.6) */
+  margin: 15px;               /* smaller page margin */
   background-color: #f9f9f9;
   color: #333;
 }
 
+/* Compact layout for main containers */
 header, section, footer {
   background: #fff;
-  padding: 20px;
-  margin-bottom: 20px;
+  padding: 15px;               /* was 20px */
+  margin-bottom: 15px;         /* was 20px */
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
 }
 
-h1 {
-  margin-top: 0;
+/* Reduce heading and paragraph margins */
+h1, h2, h3 {
+  margin-top: 0.3em;
+  margin-bottom: 0.4em;
 }
 
+p {
+  margin: 0.3em 0;             /* reduce space between paragraphs */
+}
+
+/* Compact link style */
 a {
   color: #0645ad;
   text-decoration: none;
 }
 a:hover {
   text-decoration: underline;
+}
+
+.phd-section {
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin: px auto;
+  max-width: 100vw;
+}
+
+/* Two-column layout */
+.phd-container {
+  display: flex;
+  align-items: flex-start;     /* top-aligned */
+  justify-content: space-between;
+  gap: 20px;                   /* space between columns */
+}
+
+/* Left column: text */
+.phd-text {
+  flex: 2;                     /* takes about 2/3 width */
+}
+
+/* Right column: image */
+.phd-image {
+  flex: 1;                     /* takes about 1/3 width */
+  display: flex;
+  justify-content: center;     /* center image horizontally */
+  align-items: center;         /* center vertically if image smaller */
+}
+
+/* Image styling and sizing */
+.phd-image img {
+  width: 100%;                 /* fill its column */
+  max-width: 300px;            /* limit image width */
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Optional: responsive version for mobile screens */
+@media (max-width: 768px) {
+  .phd-container {
+    flex-direction: column;
+  }
+  .phd-image {
+    margin-top: 15px;
+  }
 }
