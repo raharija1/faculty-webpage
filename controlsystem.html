@@ -4,10 +4,86 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Robotics</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      line-height: 1.6;
+      background-color: #f8f9fa;
+    }
+    h1 {
+      color: #2c3e50;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    th, td {
+      border: 1px solid #dee2e6;
+      padding: 12px 15px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background-color: #007bff;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    .back {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 8px 14px;
+      background-color: #007bff;
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+    .back:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
 <body>
-  <h1>Welcome to the Control System Page</h1>
-  <p>This section presents our control system projects.</p>
-  <a href="index.html">← Back to Home</a>
+  <h1>Control system projects</h1>
+  <p>This page presents a selection of <strong>control systems projects</strong>.</p>
+   <table>
+    <thead>
+      <tr>
+        <th>Project Title</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>PID Control of a DC Motor</strong></td>
+        <td>Design and tuning of a PID controller for speed control of a DC motor using MATLAB/Simulink.</td>
+      </tr>
+      <tr>
+        <td><strong>State-Space Control of an Inverted Pendulum</strong></td>
+        <td>Modeling and control of an inverted pendulum using LQR and pole-placement techniques.</td>
+      </tr>
+      <tr>
+        <td><strong>Trajectory Tracking for a Mobile Robot</strong></td>
+        <td>Implementation of a path-following algorithm for a differential-drive robot with feedback control.</td>
+      </tr>
+      <tr>
+        <td><strong>Robust Control of a 2-DOF Manipulator</strong></td>
+        <td>Comparison of PID and model-based controllers under parameter variations and disturbances.</td>
+      </tr>
+      <tr>
+        <td><strong>Model Predictive Control (MPC) for Temperature Regulation</strong></td>
+        <td>Design of a predictive controller for temperature control in a thermal chamber system.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <a href="index.html" class="back">← Back to Home</a>
 </body>
 </html>
