@@ -92,13 +92,19 @@
       "THESE": "Thèse"
     };
 
-    function getVenue(p) {
-      // Revue OU Conférence
-      return (p.journalTitle_s?.[0]) || (p.conferenceTitle_s?.[0]) || "";
-    }
+
+    function firstValue(v) {
+  if (!v) return "";
+  return Array.isArray(v) ? (v[0] ?? "") : v; // tableau -> 1er élément, string -> string
+}
+
+  function getVenue(p) {
+  return firstValue(p.journalTitle_s) || firstValue(p.conferenceTitle_s) || "";
+}
+
 
     function normalizeText(p) {
-      const title = p.title_s?.[0] ?? "";
+      const title = firstValue(p.title_s) ?? "";
       const authors = (p.authFullName_s ?? []).join(", ");
       const venue = getVenue(p);
       const year = p.producedDateY_i ?? "";
