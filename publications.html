@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Publications (HAL)</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; line-height: 1.4; margin: 2rem; }
+    h1 { margin-bottom: 0.5rem; }
+    .hint { color: #555; margin-bottom: 1.2rem; }
+    .year { margin-top: 1.6rem; font-size: 1.2rem; font-weight: 700; }
+    .pub { margin: 0.8rem 0; padding: 0.9rem 1rem; border: 1px solid #ddd; border-radius: 12px; }
+    .title { font-weight: 650; margin-bottom: 0.35rem; }
+    .meta { color: #555; font-size: 0.95rem; }
+    .links a { margin-right: 0.8rem; }
+    .badge { display: inline-block; padding: 0.15rem 0.5rem; border: 1px solid #ccc; border-radius: 999px; font-size: 0.8rem; color: #444; margin-left: 0.5rem; }
+    .error { color: #b00020; }
+    .controls { display: flex; gap: 0.8rem; flex-wrap: wrap; align-items: center; margin: 1rem 0 1.2rem; }
+    input[type="search"] { padding: 0.55rem 0.7rem; border: 1px solid #ccc; border-radius: 10px; min-width: 280px; }
+    select { padding: 0.55rem 0.7rem; border: 1px solid #ccc; border-radius: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Publications</h1>
+  <div class="hint">Liste générée automatiquement depuis HAL.</div>
+
+  <div class="controls">
+    <input id="q" type="search" placeholder="Filtrer (mot-clé, auteur, revue, conf…)" />
+    <select id="type">
+      <option value="">Tous types</option>
+      <option value="ART">Articles (revues)</option>
+      <option value="COMM">Conférences</option>
+      <option value="OUV">Ouvrages</option>
+      <option value="COUV">Chapitres</option>
+      <option value="THESE">Thèses</option>
+    </select>
+  </div>
+
+  <div id="pubs">Chargement…</div>
+
+  <script>
+    /***********************
+     * 1) À CONFIGURER
+     ***********************/
+    const IDHAL = "thibaut-raharijaona"; // <-- remplace par ton IdHAL
+    const ROWS = 300;          // max d'entrées récupérées
+
+    /***********************
+     * 2) Requête HAL
+     ***********************/
+    function buildHalUrl(docType) {
+      const url = new URL("https://api.archives-ouvertes.fr/search/");
+      // Requête principale
+      const baseQ = `authIdHal_s:${IDHAL}`;
+      const q = docType ? `(${baseQ}) AND docType_s:${docType}` : baseQ;
+
+      url.searchParams.set("q", q);
+      url.searchParams.set("wt", "json");
+      url.searchParams.set("rows", String(ROWS));
+      url.searchParams.set("sort", "producedDateY_i desc");
+      // Champs demandés (inclut revue et conférence)
+      url.searchParams.set("fl", [
+        "docid",
+        "title_s",
+        "authFullName_s",
+        "producedDateY_i",
+        "journalTitle_s",
+        "conferenceTitle_s",
+        "doiId_s",
+        "halId_s",
+        "uri_s",
+        "docType_s"
+      ].join(","));
+
+      return url.toString();
+    }
+
+    /***********************
+     * 3) Helpers d'affichage
+     ***********************/
+    function escapeHtml(s) {
+      return String(s ?? "").replace(/[&<>"']/g, c => ({
+        "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
+      }[c]));
+    }
+
+    const typeMap = {
+      "ART": "Journal",
+      "COMM": "Conférence",
+      "OUV": "Livre",
+      "COUV": "Chapitre",
+      "THESE": "Thèse"
+    };
+
+    function getVenue(p) {
+      // Revue OU Conférence
+      return (p.journalTitle_s?.[0]) || (p.conferenceTitle_s?.[0]) || "";
+    }
+
+    function normalizeText(p) {
+      const title = p.title_s?.[0] ?? "";
+      const authors = (p.authFullName_s ?? []).join(", ");
+      const venue = getVenue(p);
+      const year = p.producedDateY_i ?? "";
+      const type = typeMap[p.docType_s] || p.docType_s || "";
+      return `${title} ${authors} ${venue} ${year} ${type}`.toLowerCase();
+    }
+
+    function renderPub(p) {
+      const title = p.title_s?.[0] ?? "(Sans titre)";
+      const year = p.producedDateY_i ?? "";
+      const authors = (p.authFullName_s ?? []).join(", ");
+      const venue = getVenue(p);
+      const halLink = p.uri_s || (p.halId_s ? `https://hal.science/${p.halId_s}` : "#");
+      const doi = p.doiId_s ? `https://doi.org/${p.doiId_s}` : null;
+      const typeLabel = typeMap[p.docType_s] || p.docType_s || "";
+
+      return `
+        <div class="pub">
+          <div class="title">
+            <a href="${escapeHtml(halLink)}" target="_blank" rel="noopener">${escapeHtml(title)}</a>
+            ${typeLabel ? `<span class="badge">${escapeHtml(typeLabel)}</span>` : ""}
+          </div>
+          <div class="meta">
+            ${escapeHtml(authors)}<br/>
+            ${escapeHtml(String(year))}${venue ? " — " + escapeHtml(venue) : ""}
+          </div>
+          <div class="links" style="margin-top:0.5rem;">
+            <a href="${escapeHtml(halLink)}" target="_blank" rel="noopener">HAL</a>
+            ${doi ? `<a href="${escapeHtml(doi)}" target="_blank" rel="noopener">DOI</a>` : ""}
+          </div>
+        </div>
+      `;
+    }
+
+    function groupByYear(docs) {
+      const map = new Map();
+      for (const d of docs) {
+        const y = d.producedDateY_i ?? "Sans année";
+        if (!map.has(y)) map.set(y, []);
+        map.get(y).push(d);
+      }
+      // tri décroissant des années (en gardant "Sans année" à la fin)
+      const years = Array.from(map.keys()).sort((a, b) => {
+        if (a === "Sans année") return 1;
+        if (b === "Sans année") return -1;
+        return Number(b) - Number(a);
+      });
+      return { map, years };
+    }
+
+    /***********************
+     * 4) Chargement + filtre
+     ***********************/
+    let allDocs = [];
+
+    async function load() {
+      const container = document.getElementById("pubs");
+      const docType = document.getElementById("type").value;
+
+      container.textContent = "Chargement…";
+      try {
+        const res = await fetch(buildHalUrl(docType));
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        const data = await res.json();
+        allDocs = data?.response?.docs ?? [];
+        applyFilter();
+      } catch (e) {
+        console.error(e);
+        container.innerHTML = `<div class="error">Erreur lors du chargement depuis HAL (réseau/CORS possible). Si ça arrive, je peux te donner la version “proxy backend”.</div>`;
+      }
+    }
+
+    function applyFilter() {
+      const container = document.getElementById("pubs");
+      const query = document.getElementById("q").value.trim().toLowerCase();
+
+      const filtered = query
+        ? allDocs.filter(p => normalizeText(p).includes(query))
+        : allDocs;
+
+      if (!filtered.length) {
+        container.textContent = "Aucune publication trouvée.";
+        return;
+      }
+
+      const { map, years } = groupByYear(filtered);
+
+      container.innerHTML = years.map(y => {
+        const pubs = map.get(y).map(renderPub).join("");
+        return `<div class="year">${escapeHtml(y)}</div>${pubs}`;
+      }).join("");
+    }
+
+    document.getElementById("q").addEventListener("input", applyFilter);
+    document.getElementById("type").addEventListener("change", load);
+
+    // GO
+    load();
+  </script>
+</body>
+</html>
