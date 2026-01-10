@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Discussion de projet – Première séance</title>
+  <title>Projets de Commande des Système de Production</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -23,114 +23,73 @@
 
 <body>
 
-<h1>Discussion sur le projet – première séance</h1>
+<h1>Projets de Commande des Système de Production</h1>
 
 <p>
-Cette première séance correspond à une <strong>discussion qui vise à évaluer votre compréhension de la problématique du projet</strong>.<br>
-Elle ne constitue pas une soutenance et ne porte pas sur des résultats numériques.
+Cette séance correspond à une <strong>discussion qui vise à évaluer votre compréhension de la problématique du projet</strong>.<br>
 </p>
 
-<h2>Objectif</h2>
-<div class="dash-list">
-  <p>- Compréhension du système et du problème</p>
-  <p>- Choix de modélisation</p>
-  <p>- Raisonnement et avancement du projet</p>
-</div>
+<!-- Grille d’évaluation – Soutenance finale de projet (/20) -->
+<section style="font-family: Arial, sans-serif; line-height: 1.35; max-width: 900px;">
+  <h2 style="margin: 0 0 10px 0;">Grille d'évaluation des projets (/20)</h2>
 
-<p><strong>Aucun code ni résultat de simulation n’est attendu à ce stade.</strong></p>
+  <table style="border-collapse: collapse; width: 100%; margin: 10px 0;">
+    <thead>
+      <tr>
+        <th style="border: 1px solid #333; padding: 8px; text-align: left; background: #f2f2f2;">Critère</th>
+        <th style="border: 1px solid #333; padding: 8px; text-align: left; background: #f2f2f2;">Description attendue</th>
+        <th style="border: 1px solid #333; padding: 8px; text-align: center; background: #f2f2f2; width: 90px;">Points</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="border: 1px solid #333; padding: 8px;"><strong>1. Présentation de la problématique</strong></td>
+        <td style="border: 1px solid #333; padding: 8px;">
+          Clarté du système étudié, contexte, objectifs du projet, enjeux scientifiques et techniques
+        </td>
+        <td style="border: 1px solid #333; padding: 8px; text-align: center;"><strong>4</strong></td>
+      </tr>
 
-<h2>Organisation</h2>
-<div class="dash-list">
-  <p>- Discussion groupe par groupe</p>
-  <p>- Durée :</p>
-  <div class="dash-list" style="margin-left:20px;">
-    <p>- Projet individuel : environ 10 minutes</p>
-    <p>- Projet en binôme : environ 15 minutes</p>
-  </div>
-</div>
+      <tr>
+        <td style="border: 1px solid #333; padding: 8px;"><strong>2. Compréhension et modélisation du système</strong></td>
+        <td style="border: 1px solid #333; padding: 8px;">
+          Modèle (équations, états, entrées/sorties), hypothèses, sens physique
+        </td>
+        <td style="border: 1px solid #333; padding: 8px; text-align: center;"><strong>5</strong></td>
+      </tr>
 
-<h2>À préparer pour la séance</h2>
-<div class="dash-list">
-  <p>- Description claire du système étudié</p>
-  <p>- Modèle envisagé (variables d’état, entrées, sorties)</p>
-  <p>- Hypothèses et simplifications</p>
-  <p>- Stratégie de commande et/ou d’observation envisagée</p>
-  <p>- Schéma du système (fortement recommandé)</p>
-</div>
+      <tr>
+        <td style="border: 1px solid #333; padding: 8px;"><strong>3. Analyse du système</strong></td>
+        <td style="border: 1px solid #333; padding: 8px;">
+          Stabilité, contrôlabilité, observabilité, comportement dynamique, interprétation
+        </td>
+        <td style="border: 1px solid #333; padding: 8px; text-align: center;"><strong>4</strong></td>
+      </tr>
 
-<h2>Déroulement de la discussion</h2>
+      <tr>
+        <td style="border: 1px solid #333; padding: 8px;"><strong>4. Résultats de simulation (Python / Matlab)</strong></td>
+        <td style="border: 1px solid #333; padding: 8px;">
+          Qualité des simulations, scénarios testés, validation du modèle et/ou du contrôleur, interprétation des résultats
+        </td>
+        <td style="border: 1px solid #333; padding: 8px; text-align: center;"><strong>4</strong></td>
+      </tr>
 
-<ol>
-  <li>
-    <strong>Présentation rapide (3–5 minutes)</strong>
-    <div class="dash-list">
-      <p>- Système étudié</p>
-      <p>- Objectifs du projet</p>
-      <p>- État d’avancement</p>
-      <p>- Prochaines étapes prévues</p>
-    </div>
-  </li>
+      <tr>
+        <td style="border: 1px solid #333; padding: 8px;"><strong>5. Réponses aux questions techniques</strong> (2 × 1,5 pt)</td>
+        <td style="border: 1px solid #333; padding: 8px;">
+          Capacité à expliquer, justifier les choix et raisonner face à deux questions posées
+        </td>
+        <td style="border: 1px solid #333; padding: 8px; text-align: center;"><strong>3</strong></td>
+      </tr>
 
-  <li>
-    <strong>Discussion technique</strong>
-    <div class="dash-list">
-      <p>- Modélisation : choix, hypothèses, sens physique</p>
-      <p>- Analyses prévues : stabilité, contrôlabilité, observabilité</p>
-      <p>- Commande / observateur : méthode envisagée et justification</p>
-    </div>
-  </li>
+      <tr>
+        <td style="border: 1px solid #333; padding: 8px; text-align: right;" colspan="2"><strong>Total</strong></td>
+        <td style="border: 1px solid #333; padding: 8px; text-align: center;"><strong>20</strong></td>
+      </tr>
+    </tbody>
+  </table>
 
-  <li>
-    <strong>Compréhension individuelle (binômes)</strong>
-    <div class="dash-list">
-      <p>- Chaque étudiant doit être capable d’expliquer le projet</p>
-    </div>
-  </li>
-</ol>
-
-<h2>Grille d'évaluation indicative</h2>
-<p>
-Cette grille a pour but de vous guider dans votre analyse et votre compréhension du projet.
-</p>
-
-<table>
-  <tr>
-    <th>Critère</th>
-    <th>Description</th>
-    <th>Points</th>
-  </tr>
-
-  <tr>
-    <td><strong>Compréhension du système</strong></td>
-    <td>Clarté de l’explication du système, du contexte et des objectifs</td>
-    <td>/4</td>
-  </tr>
-
-  <tr>
-    <td><strong>Modélisation proposée</strong></td>
-    <td>Pertinence des variables d’état, entrées/sorties, cohérence du modèle</td>
-    <td>/5</td>
-  </tr>
-
-  <tr>
-    <td><strong>Hypothèses et simplifications</strong></td>
-    <td>Hypothèses clairement identifiées, justifiées et comprises</td>
-    <td>/4</td>
-  </tr>
-
-  <tr>
-    <td><strong>Stratégie envisagée</strong><br>(commande / observation)</td>
-    <td>Choix de la méthode et justification</td>
-    <td>/4</td>
-  </tr>
-
-  <tr>
-    <td><strong>Raisonnement et esprit critique</strong></td>
-    <td>Capacité à justifier les choix et à identifier des limites</td>
-    <td>/3</td>
-  </tr>
-</table>
-
+</section>
 
 
 </body>

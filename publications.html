@@ -39,6 +39,7 @@
   <div id="pubs">Chargement…</div>
 
   <script>
+
     /***********************
      * 1) À CONFIGURER
      ***********************/
@@ -180,7 +181,7 @@
     function applyFilter() {
       const container = document.getElementById("pubs");
       const query = document.getElementById("q").value.trim().toLowerCase();
-
+      
       const filtered = query
         ? allDocs.filter(p => normalizeText(p).includes(query))
         : allDocs;
@@ -188,7 +189,7 @@
       if (!filtered.length) {
         container.textContent = "Aucune publication trouvée.";
         return;
-      }
+        }
 
       const { map, years } = groupByYear(filtered);
 
