@@ -81,3 +81,29 @@ a:hover {
     margin-top: 15px;
   }
 }
+
+.nav-blocks{
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin: 16px 0;
+  flex-wrap: wrap;
+}
+
+.nav-block{
+  display: inline-block;
+  padding: 8px 18px;
+  border: 2px solid #1e6fd9;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #1e6fd9;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.nav-block:hover{
+  background: #1e6fd9;
+  color: #ffffff;
+}
+

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Supervision</title>
+  <style>
+    body{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      margin:0;
+      padding:0;
+      background:#ffffff;
+      color:#111;
+    }
+
+    .page{
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h1{
+      font-size: 28px;
+      margin-bottom: 24px;
+    }
+
+    /* Table styling */
+    .phd-table{
+      width: 100%;
+      border-collapse: collapse;
+      background: #eef0f8;
+    }
+
+    .phd-table tr + tr{
+      border-top: 10px solid #ffffff; /* visual separation */
+    }
+
+    .phd-name{
+      width: 220px;
+      min-width: 220px;
+      vertical-align: top;
+      font-weight: 600;
+      padding: 14px 16px;
+      white-space: nowrap;
+    }
+
+    .phd-info{
+      padding: 14px 16px;
+    }
+
+    .phd-title{
+      font-style: italic;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .phd-details{
+      font-size: 14px;
+      color: #333;
+      line-height: 1.4;
+    }
+
+    /* Responsive */
+    @media (max-width: 700px){
+      .phd-name{
+        width: 160px;
+        min-width: 160px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <h1>Supervision</h1>
+
+    <table class="phd-table">
+      <tr>
+        <td class="phd-name">Y. Tadjouddine</td>
+        <td class="phd-info">
+          <div class="phd-title">
+            “Reconfigurable Cable-Driven Parallel Robot for Greenhouse Plant Care”
+          </div>
+          <div class="phd-details">
+            Co-supervision with T. Raharijaona, J-F. Antoine and A. Kumar<br>
+            Since Oct. 2023 - LCFC, Metz, France
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="phd-name">R. Ghaddar</td>
+        <td class="phd-info">
+          <div class="phd-title">
+            “Perception and Control for Human-Robot Comanipulation of Deformable Objects”
+          </div>
+          <div class="phd-details">
+            Co-supervision with T. Raharijaona, A. Koessler and M. Benoussad<br>
+            Since Nov. 2023 - LCFC, Metz, France
+          </div>
+        </td>
+      </tr>
+    </table>
+
+  </main>
+</body>
+</html>
