@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TANDEM Projects</title>
+  <style>
+    :root{
+      --blue:#2f5aa6;
+      --text:#111;
+      --muted:#444;
+      --bg:#ffffff;
+    }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:var(--bg);
+    }
+    .page{
+      max-width: 1200px;
+      margin: 24px auto;
+      padding: 0 16px 32px;
+    }
+
+    /* Context line */
+    .context{
+      font-size: 20px;
+      line-height: 1.35;
+      margin: 0 0 18px 0;
+    }
+    .context b{ font-weight: 800; }
+
+    /* Grid of project cards */
+    .grid{
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .card{
+      border: 3px solid var(--blue);
+      border-radius: 22px;
+      padding: 18px 18px 16px;
+      display: flex;
+      flex-direction: column;
+      min-height: 520px;
+    }
+
+    .card h3{
+      margin: 0 0 14px 0;
+      text-align: center;
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .section-title{
+      font-size: 20px;
+      font-weight: 900;
+      margin: 8px 0 6px;
+    }
+
+    .p{
+      margin: 0 0 12px 0;
+      color: var(--text);
+      font-size: 18px;
+      line-height: 1.45;
+    }
+
+    .images{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 10px 0 14px;
+    }
+    .images.one{
+      grid-template-columns: 1fr;
+      justify-items: center;
+    }
+
+    .img{
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1px solid #d9d9d9;
+      background: #f3f3f3;
+    }
+
+    /* Footer section (function) sticks to bottom if content is short */
+    .spacer{ flex: 1; }
+    .function{
+      margin-top: auto;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .grid{ grid-template-columns: 1fr; }
+      .card{ min-height: auto; }
+      .images{ grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 520px){
+      .images{ grid-template-columns: 1fr; }
+      .img{ height: 180px; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <p class="context">
+      <b>Contexte :</b> Les projets TANDEM visent à développer des solutions technologiques simples, robustes et adaptées aux
+      contraintes locales, pour répondre aux besoins énergétiques et hydriques des territoires isolés.
+    </p>
+
+    <section class="grid">
+      <!-- Project 1 -->
+      <article class="card">
+        <h3>Projet 1 : Éolienne</h3>
+
+        <div class="section-title">Objectif</div>
+        <p class="p">
+          Moderniser et instrumenter deux éoliennes pédagogiques (Savonius vertical et bipale horizontal).
+        </p>
+
+        <div class="images">
+          <img class="img" src="images/savonius.png" alt="Éolienne Savonius" />
+          <img class="img" src="images/skywind.png" alt="Éolienne bipale" />
+        </div>
+
+        <div class="function">
+          <div class="section-title">Fonction principale</div>
+          <p class="p">
+            Conversion du vent en électricité avec instrumentation et régulation.
+          </p>
+        </div>
+      </article>
+
+      <!-- Project 2 -->
+      <article class="card">
+        <h3>Projet 2 : Moteur Stirling</h3>
+
+        <div class="section-title">Objectif</div>
+        <p class="p">
+          Concevoir un système low-tech de production d’énergie par concentration solaire et moteur Stirling.
+        </p>
+
+        <div class="images">
+          <img class="img" src="images/stirling-1.jpg" alt="Schéma moteur Stirling" />
+          <img class="img" src="images/stirling-2.jpg" alt="Prototype concentrateur" />
+        </div>
+
+        <div class="function">
+          <div class="section-title">Fonction principale</div>
+          <p class="p">
+            Conversion solaire thermique–énergie électrique, avec instrumentation et asservissement du suivi solaire.
+          </p>
+        </div>
+      </article>
+
+      <!-- Project 3 -->
+      <article class="card">
+        <h3>Projet 3 : Dessalinisateur par adsorption</h3>
+
+        <div class="section-title">Objectif</div>
+        <p class="p">
+          Concevoir un prototype de dessalinisateur solaire thermique par adsorption, simple et robuste.
+        </p>
+
+        <div class="images one">
+          <img class="img" src="images/dessal-1.jpg" alt="Prototype dessalinisateur" />
+        </div>
+
+        <div class="function">
+          <div class="section-title">Fonction principale</div>
+          <p class="p">
+            Produire de l’eau douce à partir d’eau de mer ou saumâtre par cycle solaire d’adsorption / désorption.
+          </p>
+        </div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
