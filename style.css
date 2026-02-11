@@ -107,3 +107,26 @@ a:hover {
   color: #ffffff;
 }
 
+/* ===== Research Tabs ===== */
+
+.menu-buttons{
+  display: flex;
+  gap: 20px;
+}
+
+.menu-btn{
+  background: #ffffff;              /* gris */
+  color: #1e6fd9;                    /* bleu-vert */
+  font-family: Arial, sans-serif;   /* même police */
+  font-weight: bold;
+
+  padding: 4px 8px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+/* Effet au survol */
+.menu-btn:hover{
+  background: #1e6fd9;   /* fond devient vert/bleu */
+  color: #ffffff;        /* texte devient blanc */
+}
